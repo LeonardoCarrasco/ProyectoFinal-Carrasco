@@ -7,9 +7,8 @@ const resultadoSpan = document.querySelector('#resultado')
 const btnHistorial = document.querySelector('#btnHistorial');
 const historialDiv = document.querySelector('#item');
 
-const monedasJson = 'json/monedas.json';
+const monedasJson = './json/monedas.json';
 // const monedasJson = 'https://raw.githubusercontent.com/LeonardoCarrasco/ProyectoFinal-Carrasco/main/json/monedas.json';
-// const codigoMonedas = './json/codes.json';
 
 async function obtenerDatos(URL) {
     try {
@@ -20,7 +19,7 @@ async function obtenerDatos(URL) {
       }
       const monedas = await resp.json();
 
-      return datos = monedas;
+      guardaDivisasLocalStorage(monedas);
 
     } catch (error) {
       console.error('Error:', error);
@@ -31,18 +30,7 @@ async function obtenerDatos(URL) {
     localStorage.setItem('divisasArr', JSON.stringify(array));
   }
 
-
-  obtenerDatos(monedasJson);
-
-  const monedas = obtenerDatos(monedasJson)
-
-  if (localStorage.getItem('divisasArr') === null || localStorage.getItem('divisasArr') === undefined){
-
-    guardaDivisasLocalStorage(monedas);
-  }
-  else{
-    guardaDivisasLocalStorage(monedas);
-  }
+  obtenerDatos(monedasJson)
 
 // Obtener divisas de local storage
 
@@ -63,9 +51,15 @@ async function obtenerDatos(URL) {
 
 function cargarMonedasEnSelect(){
     const monedas = obtenerDivisas();
-    const conversionRates = monedas.conversion_rates
-    const codigoMonedas = Object.keys(conversionRates);
-    codigoMonedas.forEach(moneda => {
+    if (!monedas || !monedas.conversion_rates) { 
+        console.log('El objeto de monedas es undefined o null');
+        return;
+    }
+    
+      console.log(monedas)
+      const conversionRates = monedas.conversion_rates;
+      const codigoMonedas = Object.keys(conversionRates);
+      codigoMonedas.forEach(moneda => {
         const valorMoneda = conversionRates[moneda]
         const opcion = document.createElement('option');
         const opcion2 = document.createElement('option');
@@ -76,12 +70,9 @@ function cargarMonedasEnSelect(){
         seleccionMoneda1.appendChild(opcion);
         seleccionMoneda2.appendChild(opcion2)
     });
+    
+    
 }
-
-
-
-cargarMonedasEnSelect();
-
 
 //  En esta funcion vamos a tomar 2 parametros. monedaElegida que la tomaremos del eventListener y luego 
 //  el select que corresponda para deshabilitar la opcion de elegir la misma moneda
