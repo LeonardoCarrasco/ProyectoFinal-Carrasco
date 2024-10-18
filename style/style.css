@@ -1,0 +1,10 @@
+
+body{
+    background-color: #b3dff5 !important;
+}
+
+#graficosMonedas{
+    overflow-x: scroll;
+    width: 500px;
+}
+
