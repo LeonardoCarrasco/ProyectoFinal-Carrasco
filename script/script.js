@@ -7,8 +7,8 @@ const resultadoSpan = document.querySelector('#resultado')
 const btnHistorial = document.querySelector('#btnHistorial');
 const historialDiv = document.querySelector('#item');
 
-// const monedasJson = 'json/monedas.json';
-const monedasJson = 'https://raw.githubusercontent.com/LeonardoCarrasco/ProyectoFinal-Carrasco/main/json/monedas.json';
+const monedasJson = 'json/monedas.json';
+// const monedasJson = 'https://raw.githubusercontent.com/LeonardoCarrasco/ProyectoFinal-Carrasco/main/json/monedas.json';
 // const codigoMonedas = './json/codes.json';
 
 async function obtenerDatos(URL) {
@@ -31,13 +31,16 @@ async function obtenerDatos(URL) {
     localStorage.setItem('divisasArr', JSON.stringify(array));
   }
 
+
+  obtenerDatos(monedasJson);
+
   const monedas = obtenerDatos(monedasJson)
 
-  if (localStorage.getItem('divisasArr')){
+  if (localStorage.getItem('divisasArr') === null || localStorage.getItem('divisasArr') === undefined){
 
   }
   else{
-    guardaDivisasLocalStorage(monedas)
+    guardaDivisasLocalStorage(monedas);
   }
 
 // Obtener divisas de local storage
@@ -74,7 +77,7 @@ function cargarMonedasEnSelect(){
     });
 }
 
-obtenerDatos(monedasJson);
+
 
 cargarMonedasEnSelect();
 
