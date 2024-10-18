@@ -255,10 +255,10 @@ function actualizarHistorial() {
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: Object.keys(obtenerDivisas().conversion_rates),
+        labels: Object.keys(localStorage.getItem('divisasArr')),
         datasets: [{
             label: 'Tasa de Cambio respecto al USD',
-            data: Object.values(obtenerDivisas().conversion_rates),
+            data: Object.values(localStorage.getItem('divisasArr')),
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 2,
