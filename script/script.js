@@ -50,14 +50,17 @@ async function obtenerDatos(URL) {
   }
 
 function cargarMonedasEnSelect(){
-    const monedas = obtenerDivisas();
-    if (!monedas || !monedas.conversion_rates) { 
-        console.log('El objeto de monedas es undefined o null');
+    const getMonedas = JSON.parse(localStorage.getItem('divisasArr'));
+    if (!getMonedas) { 
+      Swal.fire({
+        icon: "error",
+        title: "Datos no encontrados",
+        text: "No se encontraton datos en Local Storage"
+      });
         return;
     }
     
-      console.log(monedas)
-      const conversionRates = localStorage.getItem('divisasArr').conversion_rates;
+      const conversionRates = getMonedas.conversion_rates;
       const codigoMonedas = Object.keys(conversionRates);
       codigoMonedas.forEach(moneda => {
         const valorMoneda = conversionRates[moneda]
@@ -71,8 +74,9 @@ function cargarMonedasEnSelect(){
         seleccionMoneda2.appendChild(opcion2)
     });
     
-    
 }
+
+cargarMonedasEnSelect();
 
 //  En esta funcion vamos a tomar 2 parametros. monedaElegida que la tomaremos del eventListener y luego 
 //  el select que corresponda para deshabilitar la opcion de elegir la misma moneda
