@@ -57,7 +57,7 @@ function cargarMonedasEnSelect(){
     }
     
       console.log(monedas)
-      const conversionRates = monedas.conversion_rates;
+      const conversionRates = localStorage.getItem('divisasArr').conversion_rates;
       const codigoMonedas = Object.keys(conversionRates);
       codigoMonedas.forEach(moneda => {
         const valorMoneda = conversionRates[moneda]
