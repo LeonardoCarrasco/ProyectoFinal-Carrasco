@@ -38,6 +38,7 @@ async function obtenerDatos(URL) {
 
   if (localStorage.getItem('divisasArr') === null || localStorage.getItem('divisasArr') === undefined){
 
+    guardaDivisasLocalStorage(monedas);
   }
   else{
     guardaDivisasLocalStorage(monedas);
