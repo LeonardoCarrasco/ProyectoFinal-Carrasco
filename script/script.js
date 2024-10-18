@@ -7,7 +7,7 @@ const resultadoSpan = document.querySelector('#resultado')
 const btnHistorial = document.querySelector('#btnHistorial');
 const historialDiv = document.querySelector('#item');
 
-const monedasJson = './json/monedas.json';
+const monedasJson = '../json/monedas.json';
 // const codigoMonedas = './json/codes.json';
 
 async function obtenerDatos(URL) {
