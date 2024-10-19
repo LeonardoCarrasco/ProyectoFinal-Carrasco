@@ -262,7 +262,7 @@ new Chart(ctx, {
         labels: Object.keys(JSON.parse(localStorage.getItem('divisasArr')).conversion_rates),
         datasets: [{
             label: 'Tasa de Cambio respecto al USD',
-            data: Object.values(JSON.parse(localStorage.getItem('divisasArr')).conversion_ratesgit),
+            data: Object.values(JSON.parse(localStorage.getItem('divisasArr')).conversion_rates),
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 2,
